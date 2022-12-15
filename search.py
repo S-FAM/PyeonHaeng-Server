@@ -45,8 +45,10 @@ class Search(Resource):
 
             if len(error_msg) == 0:
                 res = connection.processDB(data)
-                # return res
-                return jsonify(Util.make_response_json(res))
+                code = 200
+                if len(res)==0:
+                    code = 400
+                return make_response(jsonify(Util.make_response_json(res)),code)
             else:
                 return make_response(jsonify(error_msg), 400)
 
