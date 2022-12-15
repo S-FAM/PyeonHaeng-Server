@@ -12,7 +12,6 @@ SEARCH = Namespace("products/search")
 class Search(Resource):
     def get(self):
         connection = SQL()
-        util = Util()
         error_msg = {}
         data = SQLRequest()
         try:
@@ -47,7 +46,7 @@ class Search(Resource):
             if len(error_msg) == 0:
                 res = connection.processDB(data)
                 # return res
-                return jsonify(util.make_response_json(res))
+                return jsonify(Util.make_response_json(res))
             else:
                 return make_response(jsonify(error_msg), 400)
 
