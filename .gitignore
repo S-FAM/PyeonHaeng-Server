@@ -1,0 +1,5 @@
+test.ipynb
+__pycache__/
+get_conv_sale.py
+sql.py
+flask_main.py
