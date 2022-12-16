@@ -46,7 +46,7 @@ class Filter(Resource):
             if order is not None:
                 order = order.lower()
                 if order != "asc" and order != "desc" and order !='none':
-                    error_msg["message"] = f"order must be asc or desc : {order}"
+                    error_msg["message"] = f"order must be asc or desc or None: {order}"
                 else:
                     data.set_order_by(order)
 

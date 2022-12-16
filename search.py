@@ -16,14 +16,25 @@ class Search(Resource):
         data = SQLRequest()
         try:
             name = request.args.get("name")
+            cvs = request.args.get("cvs")
+            event = request.args.get("event")
             offset = request.args.get("offset")
             limit = request.args.get("limit")
             order = request.args.get("order-by")
 
-            if name is None:
-                error_msg["message"] = "name is empty"
-            else:
+            if name is not None:
                 data.add("name", name)
+                
+            if cvs is None:
+                error_msg["message"] = "cvs is empty"
+            else:
+                data.add("cvs", cvs)
+
+            if event is None:
+                error_msg["message"] = "event is empty"
+            else:
+                data.add("event", event)
+
 
             if offset is not None:
                 if not offset.isdecimal():
@@ -38,8 +49,9 @@ class Search(Resource):
                     data.set_limit(limit)
 
             if order is not None:
-                if order != "asc" and order != "desc":
-                    error_msg["message"] = f"order must be asc or desc : {order}"
+                order = order.lower()
+                if order != "asc" and order != "desc" and order !='none':
+                    error_msg["message"] = f"order must be asc or desc or None: {order}"
                 else:
                     data.set_order_by(order)
 
