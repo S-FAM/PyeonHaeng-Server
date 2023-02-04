@@ -1,7 +1,5 @@
 from flask import request, Response, jsonify, make_response
 from flask_restx import Resource, Api, Namespace
-import json
-from pandas.io.json import json_normalize
 from sql import SQL, SQLRequest
 from util import Util
 
