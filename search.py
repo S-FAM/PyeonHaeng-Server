@@ -40,13 +40,13 @@ class Search(Resource):
                 if not offset.isdecimal():
                     error_msg["message"] = f"offset must be a integer : {offset}"
                 else:
-                    data.set_offset(offset)
+                    data.set_offset(int(offset))
 
             if limit is not None:
                 if not limit.isdecimal():
                     error_msg["message"] = f"limit must be a integer : {limit}"
                 else:
-                    data.set_limit(limit)
+                    data.set_limit(int(limit))
 
             if order is not None:
                 order = order.lower()
@@ -56,6 +56,7 @@ class Search(Resource):
                     data.set_order_by(order)
 
             if len(error_msg) == 0:
+                connection.check_connection()
                 res = connection.processDB(data)
                 code = 200
                 if len(res)==0:
@@ -66,4 +67,4 @@ class Search(Resource):
 
         except Exception as e:
             print(f"error {e}")
-            raise e
+            

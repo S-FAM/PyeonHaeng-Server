@@ -31,6 +31,7 @@ class History(Resource):
 
 
             if len(error_msg) == 0:
+                connection.check_connection()
                 res = connection.processDB(data,True)
                 code = 200
                 if len(res)==0:
