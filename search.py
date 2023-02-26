@@ -57,6 +57,7 @@ class Search(Resource):
                 connection.check_connection()
                 res = connection.processDB(data)
                 code = 200
+                res = Util.remove_none_img(res)
                 if len(res)==0:
                     code = 400
                 return make_response(jsonify(Util.make_response_json(res)),code)
