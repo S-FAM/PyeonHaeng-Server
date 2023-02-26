@@ -23,3 +23,14 @@ class Util:
             dict["products"] = products
 
         return dict
+    
+    def remove_none_img(data):
+        """
+        db 조회 결과에서 img가 없어서 'None'인 경우 아예 제거하여 반환
+        Args:
+            data(list(dict)) : db 조회 결과가 dict 타입으로 들어있는 list 
+        """
+        for item in data:
+            if item['img'] == 'None':
+                del(item['img'])
+        return data
