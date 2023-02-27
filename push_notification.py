@@ -10,7 +10,7 @@ class PushNotificationModule:
         __cred = credentials.Certificate("keys/serviceAccountKey.json")
         firebase_admin.initialize_app(__cred)
 
-    def send_push(*, title: str, body: str, verbose=False) -> bool:
+    def send_push(self, *, title: str, body: str, verbose=False) -> bool:
         try:
             # 사용자에게 푸시알림을 전송하기 위해 topic을 이용
             topic = "PyeonHaeng"
